@@ -1,6 +1,6 @@
-﻿Shader "Shader/OldShool"
+﻿Shader "Shader/PhongOldShool"
 {
-    Properties {
+      Properties {
         //TODO 材质面板参数
         _MainCol("颜色", color) = (1.0,1.0,1.0,1.0)
         _SpecularPow("高光次幂", range(1, 90)) = 30
@@ -49,14 +49,14 @@
                 float3 nDir = i.nDirWS;
                 float3 lDir = _WorldSpaceLightPos0.xyz;
                 float3 vDir = normalize(_WorldSpaceCameraPos.xyz - i.posWS.xyz);
-                float3 hDir = normalize(vDir + lDir);
+                float3 rDir = reflect(-lDir, nDir);
                 //准备点积结果
-                float nDotl = dot(nDir, lDir);
-                float nDoth = dot(nDir, hDir);
+                float ndotl = dot(nDir, lDir);
+                float vdotr = dot(vDir, rDir);
                 //光照模型
-                float lambert = max(0.0, nDotl);
-                float blinnPhong = pow(max(0.0, nDoth), _SpecularPow);
-                float3 finalRGB = _MainCol * lambert + blinnPhong;
+                float lambert = max(0.0, ndotl);
+                float phong = pow(max(0.0, vdotr), _SpecularPow);
+                float3 finalRGB = _MainCol * lambert + phong;
                 return float4(finalRGB,1.0);
             }
             ENDCG
