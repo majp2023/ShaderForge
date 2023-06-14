@@ -67,15 +67,15 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaskRange: 0.308
-    - _MaskTex: 0.556
+    - _MaskRange: 0.357
+    - _MaskTex: 0.389
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
-    - _SpecPow1: 3.2
-    - _SpecPow2: 3.6
+    - _SpecPow1: 5.6
+    - _SpecPow2: 3.3
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0

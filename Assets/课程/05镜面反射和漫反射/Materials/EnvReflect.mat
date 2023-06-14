@@ -64,7 +64,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EnvReflect: 0.32
+    - _EnvReflect: 0.377
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -75,7 +75,7 @@ Material:
     - _RampType: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularPow: 30
+    - _SpecularPow: 38.5
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
