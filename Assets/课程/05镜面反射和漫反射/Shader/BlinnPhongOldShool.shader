@@ -1,4 +1,5 @@
-﻿Shader "Shader/BlinnPhongOldShool"
+﻿//BlinnPhong 高光
+Shader "Shader/BlinnPhongOldShool"
 {
     Properties {
         //TODO 材质面板参数

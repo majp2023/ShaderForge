@@ -1,4 +1,5 @@
-﻿Shader "Shader/3ColAmbient01"
+﻿//环境光
+Shader "Shader/3ColAmbient01"
 {
       Properties {
         //TODO 材质面板参数

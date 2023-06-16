@@ -1,4 +1,5 @@
-﻿Shader "Shader/Shadow"
+﻿//阴影
+Shader "Shader/Shadow"
 {
    Properties {
         //TODO 材质面板参数

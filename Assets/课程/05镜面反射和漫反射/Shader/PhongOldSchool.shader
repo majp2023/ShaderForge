@@ -1,4 +1,5 @@
-﻿Shader "Shader/PhongOldShool"
+﻿//Phong 高光
+Shader "Shader/PhongOldShool"
 {
       Properties {
         //TODO 材质面板参数
