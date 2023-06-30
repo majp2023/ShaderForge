@@ -71,8 +71,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RimIntensity: 5
-    - _RimPower: 10
+    - _RimIntensity: 1.7
+    - _RimPower: 2.7
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -82,4 +82,4 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 0.115877554, g: 0.7249169, b: 0.8773585, a: 1}
+    - _RimColor: {r: 0.21582416, g: 0.51186544, b: 0.9150943, a: 1}

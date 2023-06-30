@@ -84,7 +84,7 @@
 				//衰减后颜色值
 				float3 AttenColor = Attenuation * _LightColor0.xyz;
  
-				float backMask = max(0.0, lDir.r) * AttenColor;
+				//float backMask = max(0.0, lDir.r) * AttenColor;
 
 				//【8.3】计算漫反射 || Diffuse
 				float nDotl = dot(nDir, lDir);
@@ -100,7 +100,6 @@
 				//最终颜色 = （漫反射系数 x 纹理颜色 x rgb颜色）+自发光颜色 || Final Color=(Diffuse x Texture x rgbColor)+Emissive
 				float3 finalColor = diffuse * (tex2D(_TextureDiffuse, TRANSFORM_TEX(i.uv0.rg, _TextureDiffuse)).rgb * _MainColor.rgb) + emissive;
 				
-
 				//【8.6】返回最终颜色 || Return final color
 				return fixed4(finalColor,1);
             }
