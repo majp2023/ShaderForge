@@ -13,7 +13,6 @@ Shader "Shader/L03_FlatCol_SF_2" {
                 "LightMode"="ForwardBase"
             }
             
-            
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
