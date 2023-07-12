@@ -1,22 +1,24 @@
-﻿Shader "Shader/13/AC"
+﻿Shader "Shader/13/AD"
 {
       Properties {
         //TODO 材质面板参数
         _MainTex("RGB：颜色A：透贴",2d) = "gray"{}
-        _Cutoff("透切阈值",range(0.0,1.0)) = 0.5
+        _Opacity("透明值", Range(0, 1)) = 1
     }
     SubShader {
         Tags {
-                "RenderType" = "TransparentCutout"//对应改为Cutout
-                "ForceNoShadowCasting" = "True"//关闭阴影投射
-                "IgnoreProjector" = "True"//不响应投射器
+                "Queue"="Transparent"//调整渲染顺序
+                "RenderType"="Transparent"//对应改为Cutout
+                "ForceNoShadowCasting"="True"//关闭阴影投射
+                "IgnoreProjector"="True"//不响应投射器
         }
         Pass {
             Name "FORWARD"
             Tags {
                 "LightMode"="ForwardBase"
             }
-            
+            Blend One One
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -25,7 +27,7 @@
             #pragma target 3.0
             uniform sampler2D _MainTex;
             uniform float4 _MainTex_ST;
-            uniform half _Cutoff;
+            uniform float _Opacity;
             struct VertexInput {
                 //TODO 输入结构
                 float4 vertex : POSITION;
@@ -45,9 +47,10 @@
             }
             float4 frag(VertexOutput i) : COLOR {
                 //TODO 像素Shader
-                half4 var_MainTex = tex2D(_MainTex,i.uv);//采样贴图RGB颜色A透贴
-                clip(var_MainTex.a - _Cutoff);//透明剪切
-                return var_MainTex;//float4(0,0.4,0,1.0);
+                half4 var_MainTex = tex2D(_MainTex, i.uv);
+                float3 finalRGB = var_MainTex.rgb;
+                float opacity = var_MainTex.a * _Opacity;
+                return half4(finalRGB * opacity, opacity);//返回值
             }
             ENDCG
         }

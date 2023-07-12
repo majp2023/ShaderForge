@@ -1,9 +1,11 @@
-﻿Shader "Shader/13/AB"
+﻿Shader "Shader/19/Rotation"
 {
-   Properties {
+    Properties {
         //TODO 材质面板参数
          _MainTex("RGB：颜色A：透贴",2d) = "gray"{}
          _Opacity ("透明度", range(0, 1)) = 0.5
+          _RotateRange    ("旋转范围", range(0.0, 45.0)) = 20.0
+         _RotateSpeed    ("旋转速度", range(0.0, 3.0)) = 1.0
     }
     SubShader {
         Tags {
@@ -29,6 +31,8 @@
             #pragma target 3.0
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
             uniform half _Opacity;
+            uniform float _RotateRange;
+            uniform float _RotateSpeed;
             //TODO 输入结构
             struct VertexInput {
                 float4 vertex : POSITION;
@@ -39,9 +43,23 @@
                 float4 pos : SV_POSITION;
                 float2 uv : TEXCOORD0;
             };
+            // 声明常量
+            #define TWO_PI 6.283185
+            // 顶点动画方法
+            void Rotation (inout float3 vertex) {
+                float angleY = _RotateRange * sin(frac(_Time.z * _RotateSpeed) * TWO_PI);
+                float radY = radians(angleY);
+                float sinY, cosY = 0;
+                sincos(radY, sinY, cosY);
+                vertex.xz = float2(
+                    vertex.x * cosY - vertex.z * sinY,
+                    vertex.x * sinY + vertex.z * cosY
+                );
+            }
             //TODO 顶点Shader
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
+                Rotation(v.vertex.xyz);
                 o.pos = UnityObjectToClipPos( v.vertex );
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);//UV信息支持TilingOffset
                 return o;
